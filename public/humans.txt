@@ -1,0 +1,6 @@
+/* TEAM */
+Developer: Marek Algoud
+Twitter: @marekalgoud
+
+/* THANKS */
+Thanks to all the open-source contributors and libraries.

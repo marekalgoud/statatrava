@@ -1,59 +1,26 @@
 # Statatrava
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.6.
+Statatrava est une simple appli de stat sur les données fournies par strava.
+Le but du projet est :
+- de donner des stats de comparaison avec le même mois de l'année précédentes
+- de comparer ses performances d'année en année
+- de tracker les emissions de CO² économisé grace aux trajets "déplacement / transport"
+- ... de tester les dernières fonctionnalités du framework angular
 
-## Development server
+Strava limite l'accès a ses API. Si l'app ne répond pas, il se peut que mon quotas ait été atteint !
 
-To start a local development server, run:
+## Bonnes pratiques mises en place sur le projet
 
-```bash
-ng serve
-```
+- **Commitlint** : suivi des bonnes pratiques de gestion des messages de commit
+- **release-it** : gestion des release "intelligent" basé sur les messages de commit, gestion des versions, génération de changelog
+- **renovate** : mise en place de renovate pour les dépendance du projet
+- **Open Api generator**: genère les services / modèle à partir du swagger fourni par Strava
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Ressources
 
-## Code scaffolding
+- Logo et favicon générés avec copilot et https://favicon.io/favicon-converter/
+- icones présentes dans l'app téléchargées depuis https://www.flaticon.com/fr/uicons/interface-icons
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Url de l'application
 
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+https://statatrava.netlify.com

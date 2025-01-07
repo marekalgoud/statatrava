@@ -1,8 +1,24 @@
-import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import { ApplicationConfig, inject, LOCALE_ID, provideAppInitializer, provideZoneChangeDetection } from '@angular/core'
+import { provideRouter } from '@angular/router'
+import { routes } from './app.routes'
+import { provideHttpClient } from '@angular/common/http'
+import { AuthService } from './services/auth.service'
+import { registerLocaleData } from '@angular/common'
+import localeFr from '@angular/common/locales/fr'
+import { register } from 'swiper/element/bundle'
 
-import { routes } from './app.routes';
+register()
+registerLocaleData(localeFr, 'fr')
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes)]
+  providers: [
+    provideHttpClient(),
+    provideZoneChangeDetection({ eventCoalescing: true }),
+    provideRouter(routes),
+    provideAppInitializer(() => {
+      const initFn = ((authService: AuthService) => authService.init())(inject(AuthService))
+      return initFn
+    }),
+    { provide: LOCALE_ID, useValue: 'fr' }
+  ]
 };

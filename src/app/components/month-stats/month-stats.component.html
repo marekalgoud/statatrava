@@ -1,0 +1,13 @@
+<div class="px-4 py-2 bg-white dark:bg-slate-800 shadow-md border border-slate-200 dark:border-slate-700 rounded-md">
+  <h3 class="text-xl font-bold text-slate-900 dark:text-slate-200 mb-2">{{day() | date:'MMMM YYYY'}}</h3>
+  <div class="leading-tight mt-1"><span class="font-bold text-slate-900 dark:text-slate-200">{{activitiesOfTheMonth().length}}</span> activités <span class="text-xs">(<span class="font-bold" [ngClass]="{'text-green-600': activitiesDiff() > 0, 'text-red-600': activitiesDiff() < 0}">@if (activitiesDiff() > 0){+}{{activitiesDiff()}}</span> par rapport à {{ lastYearDay() | date: 'MMM YYYY'}})</span></div>
+  @if(km() || nbKmDiff()) {
+    <div class="leading-tight mt-1"><span class="font-bold text-slate-900 dark:text-slate-200">{{km() | number:'1.2-2'}} Km</span> parcourus <span class="text-xs">(<span class="font-bold" [ngClass]="{'text-green-600': activitiesDiff() > 0, 'text-red-600': activitiesDiff() < 0}">@if (nbKmDiff() > 0){+}{{nbKmDiff() | number:'1.2-2'}}km</span> par rapport à {{ lastYearDay() | date: 'MMM YYYY'}})</span></div>
+  }
+  <div class="leading-tight mt-1"><span class="font-bold text-slate-900 dark:text-slate-200">{{time() | timeFormat}}</span>&nbsp;<span class="text-xs">(<span class="font-bold" [ngClass]="{'text-green-600': activitiesDiff() > 0, 'text-red-600': activitiesDiff() < 0}">@if (nbTimeDiff() > 0){+}{{nbTimeDiff() | timeFormat}}</span> par rapport à {{ lastYearDay() | date: 'MMM YYYY'}})</span></div>
+
+  @if(this.commute()) {
+    <div class="leading-tight mt-1"><span class="font-bold text-slate-900 dark:text-slate-200">{{co2() | number:'1.2-2'}}</span> Kg de CO² économisés<span class="text-xs">(<span class="font-bold" [ngClass]="{'text-green-600': activitiesDiff() > 0, 'text-red-600': activitiesDiff() < 0}">@if (co2Diff() > 0){+}{{co2Diff() | number: '1.2-2'}}</span> Kg de CO² par rapport à {{ lastYearDay() | date: 'MMM YYYY'}})</span></div>
+  }
+
+</div>
