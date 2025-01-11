@@ -37,18 +37,18 @@ export class StatsService {
     }
   }
 
-  getActivities(before: number | undefined = undefined, after: number | undefined = undefined):Signal<SummaryActivity[] | undefined> {
+  get activities():Signal<SummaryActivity[] | undefined> {
     if(this._activities()) {
       return this._activities
     } else {
       let page = 1
-      return toSignal(this.activitiesService.getLoggedInAthleteActivities(before,after, page, 100).pipe(
+      return toSignal(this.activitiesService.getLoggedInAthleteActivities(undefined,undefined, page, 100).pipe(
         expand(response => {
           if (response.length == 0) {
             return of();
           }
           page++;
-          return this.activitiesService.getLoggedInAthleteActivities(before,after, page, 100)
+          return this.activitiesService.getLoggedInAthleteActivities(undefined,undefined, page, 100)
         }
         ),
           takeWhile(response => response && response.length > 0),

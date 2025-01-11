@@ -13,11 +13,11 @@ import { DOCUMENT } from '@angular/common';
 })
 export class AppComponent {
 
-  stats = inject(StatsService);
-  document = inject(DOCUMENT);
+  stats = inject(StatsService)
+  document = inject(DOCUMENT)
 
-  athlete = this.stats.athlete;
-  activities = this.stats.getActivities()
+  athlete = this.stats.athlete
+  activities = this.stats.activities
 
   firstDayOfLast12Month = Array.from({ length: 12 }, (v, index) => dayjs().startOf('month').subtract(index, 'month').format());
 
