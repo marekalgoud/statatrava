@@ -2,5 +2,16 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "config:recommended"
+  ],
+  "automerge": true,
+  "packageRules": [
+    {
+      "matchPackageNames": [
+        "@release-it/conventional-changelog",
+        "release-it"
+      ],
+      "groupName": "release-it-dependencies",
+      "automerge": true
+    }
   ]
 }
