@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
-<testsuite name="Chrome Headless 131.0.0.0 (Windows 10)" package="" timestamp="2025-01-07T14:31:41" id="0" hostname="DESKTOP-EKBFD3O" tests="5" errors="0" failures="0" time="0.106">
+<testsuite name="Chrome Headless 131.0.0.0 (Windows 10)" package="" timestamp="2025-01-11T14:59:36" id="0" hostname="DESKTOP-EKBFD3O" tests="5" errors="0" failures="0" time="0.137">
   <properties>
     <property name="browser.fullName" value="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/131.0.0.0 Safari/537.36"/>
   </properties>
-  <testcase name="AppComponent should render title" time="0.084" classname="AppComponent"/>
-  <testcase name="AppComponent should create the app" time="0.004" classname="AppComponent"/>
+  <testcase name="AppComponent should create the app" time="0.104" classname="AppComponent"/>
+  <testcase name="AppComponent should render title" time="0.008" classname="AppComponent"/>
+  <testcase name="MonthStatsComponent should create" time="0.017" classname="MonthStatsComponent"/>
+  <testcase name="StatsService should be created" time="0.003" classname="StatsService"/>
   <testcase name="AuthService should be created" time="0.005" classname="AuthService"/>
-  <testcase name="MonthStatsComponent should create" time="0.011" classname="MonthStatsComponent"/>
-  <testcase name="StatsService should be created" time="0.002" classname="StatsService"/>
   <system-out>
     <![CDATA[Chrome Headless 131.0.0.0 (Windows 10) LOG: '
 ███████ ████████  █████  ████████  █████  ████████ ██████   █████  ██    ██  █████ 
