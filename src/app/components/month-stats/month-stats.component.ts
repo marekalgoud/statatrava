@@ -1,4 +1,4 @@
-import { booleanAttribute, Component, computed, input } from '@angular/core';
+import { booleanAttribute, Component, computed, input, OnChanges } from '@angular/core';
 import { SummaryActivity } from '../../open-api/strava';
 import { CommonModule, DatePipe, DecimalPipe } from '@angular/common';
 import dayjs from 'dayjs';
@@ -12,7 +12,7 @@ const CO2 = 0.21743;
   styleUrl: './month-stats.component.css',
   imports: [DatePipe, TimeFormatPipe, DecimalPipe, CommonModule]
 })
-export class MonthStatsComponent {
+export class MonthStatsComponent implements OnChanges {
 
   day = input.required<string>()
   activities = input<SummaryActivity[]>([])
@@ -90,5 +90,12 @@ export class MonthStatsComponent {
   nbKmDiff = computed(() => this.km() - this.kmLastYear())
   nbTimeDiff = computed(() => this.time() - this.timeLastYear())
   co2Diff = computed(() => this.co2() - this.co2LastYear())
+
+  ngOnChanges() {
+    console.log('test')
+    if(this.commute()) {
+      console.log(this.activitiesOfTheMonth())
+    }
+  }
 
 }
