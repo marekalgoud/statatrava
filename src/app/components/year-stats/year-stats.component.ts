@@ -6,12 +6,11 @@ import { TimeFormatPipe } from '../../pipe/timeFormat.pipe';
 import { CO2 } from '../../constant';
 
 @Component({
-  selector: 'app-month-stats',
-  templateUrl: './month-stats.component.html',
-  styleUrl: './month-stats.component.css',
+  selector: 'app-year-stats',
+  templateUrl: './year-stats.component.html',
   imports: [DatePipe, TimeFormatPipe, DecimalPipe, CommonModule]
 })
-export class MonthStatsComponent {
+export class YearStatsComponent {
 
   day = input.required<string>()
   activities = input<SummaryActivity[]>([])
@@ -19,7 +18,7 @@ export class MonthStatsComponent {
   commute = input(false, { transform: booleanAttribute })
   lastYearDay = computed(() => dayjs(this.day()).subtract(1, 'year').format())
 
-  activitiesOfTheMonth = computed(() => {
+  activitiesOfTheYear = computed(() => {
     return this.activities()?.
     filter((activity: SummaryActivity) => {
       const types = this.types()
@@ -36,11 +35,11 @@ export class MonthStatsComponent {
     }).
     filter((activity:SummaryActivity) => {
       const activityDate = dayjs(activity.start_date)
-      return activityDate.isAfter(dayjs(this.day())) && activityDate.isBefore(dayjs(this.day()).endOf('month'))
+      return activityDate.isAfter(dayjs(this.day()).startOf('year')) && activityDate.isBefore(dayjs(this.day()).endOf('year'))
     })
   })
 
-  activitiesOfTheMonthLastYear = computed(() => {
+  activitiesOfTheLastYear = computed(() => {
     return this.activities()?.
     filter((activity: SummaryActivity) => {
       const types = this.types()
@@ -57,35 +56,35 @@ export class MonthStatsComponent {
     }).
     filter((activity:SummaryActivity) => {
       const activityDate = dayjs(activity.start_date)
-      return activityDate.isAfter(dayjs(this.day()).subtract(1, 'year')) && activityDate.isBefore(dayjs(this.day()).subtract(1, 'year').endOf('month'))
+      return activityDate.isAfter(dayjs(this.day()).startOf('year').subtract(1, 'year')) && activityDate.isBefore(dayjs(this.day()).subtract(1, 'year').endOf('year'))
     })
   })
 
   km = computed(() => {
-    const meters = this.activitiesOfTheMonth()?.map((activity: SummaryActivity) => activity.distance || 0).reduce((a, b) => a + b, 0) || 0
+    const meters = this.activitiesOfTheYear()?.map((activity: SummaryActivity) => activity.distance || 0).reduce((a, b) => a + b, 0) || 0
     return meters / 1000
   })
 
   co2 = computed(() => this.km() * CO2 )
 
   kmLastYear = computed(() => {
-    const meters = this.activitiesOfTheMonthLastYear()?.map((activity: SummaryActivity) => activity.distance || 0).reduce((a, b) => a + b, 0) || 0
+    const meters = this.activitiesOfTheLastYear()?.map((activity: SummaryActivity) => activity.distance || 0).reduce((a, b) => a + b, 0) || 0
     return meters / 1000
   })
 
   co2LastYear = computed(() => this.kmLastYear() * CO2)
 
   time = computed(() => {
-    const secondes = this.activitiesOfTheMonth()?.map((activity: SummaryActivity) => activity.elapsed_time || 0).reduce((a, b) => a + b, 0) || 0
+    const secondes = this.activitiesOfTheYear()?.map((activity: SummaryActivity) => activity.elapsed_time || 0).reduce((a, b) => a + b, 0) || 0
     return Math.floor(secondes / 60)
   })
 
   timeLastYear = computed(() => {
-    const secondes = this.activitiesOfTheMonthLastYear()?.map((activity: SummaryActivity) => activity.elapsed_time || 0).reduce((a, b) => a + b, 0) || 0
+    const secondes = this.activitiesOfTheLastYear()?.map((activity: SummaryActivity) => activity.elapsed_time || 0).reduce((a, b) => a + b, 0) || 0
     return Math.floor(secondes / 60)
   })
 
-  activitiesDiff = computed(() => (this.activitiesOfTheMonth()?.length || 0) - (this.activitiesOfTheMonthLastYear()?.length || 0))
+  activitiesDiff = computed(() => (this.activitiesOfTheYear()?.length || 0) - (this.activitiesOfTheLastYear()?.length || 0))
   nbKmDiff = computed(() => this.km() - this.kmLastYear())
   nbTimeDiff = computed(() => this.time() - this.timeLastYear())
   co2Diff = computed(() => this.co2() - this.co2LastYear())
