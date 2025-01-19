@@ -2,6 +2,8 @@ import { TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { provideHttpClient } from '@angular/common/http';
 import { StatsService } from './services/stats.service';
+import { ActivatedRoute } from '@angular/router';
+import { of } from 'rxjs';
 
 describe('AppComponent', () => {
 
@@ -11,7 +13,18 @@ describe('AppComponent', () => {
       imports: [AppComponent],
       providers: [
         provideHttpClient(),
-        { provide: StatsService, useValue: mockStatsService}
+        { provide: StatsService, useValue: mockStatsService},
+        {
+          provide: ActivatedRoute,
+          useValue: {
+            params: of({ id: '123' }), // Mock des paramètres de route si nécessaire
+            snapshot: {
+              paramMap: {
+                get: () => '123' // Mock des paramètres de route si nécessaire
+              }
+            }
+          }
+        }
       ]
     }).compileComponents();
   });
