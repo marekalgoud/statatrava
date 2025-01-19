@@ -13,16 +13,21 @@ export class StatsService {
   activitiesService = inject(ActivitiesService);
   auth = inject(AuthService)
 
-  private localStorageAthlete = window.localStorage.getItem('athlete')
-  private _athlete: Signal<DetailedAthlete| undefined> = signal(this.localStorageAthlete ? JSON.parse(this.localStorageAthlete): undefined);
+  private localStorageAthlete: string | null
+  private _athlete: Signal<DetailedAthlete| undefined>
 
-  private localStorageActivities = window.localStorage.getItem('activities')
-  private _activities: Signal<SummaryActivity[]| undefined> = signal(this.localStorageActivities ? JSON.parse(this.localStorageActivities): undefined);
-
+  private localStorageActivities:string | null
+  private _activities: Signal<SummaryActivity[]| undefined>
 
   constructor() {
     this.athletesService.configuration = this.auth.config
     this.activitiesService.configuration = this.auth.config
+
+    this.localStorageAthlete = window.localStorage.getItem('athlete')
+    this.localStorageActivities = window.localStorage.getItem('activities')
+
+    this._athlete = signal(this.localStorageAthlete ? JSON.parse(this.localStorageAthlete): undefined)
+    this._activities = signal(this.localStorageActivities ? JSON.parse(this.localStorageActivities): undefined)
   }
 
   get athlete():Signal<DetailedAthlete| undefined> {
