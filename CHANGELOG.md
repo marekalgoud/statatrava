@@ -1,5 +1,32 @@
 # Changelog
 
+## 1.2.0 (2025-01-19)
+
+* fix: correction du double chargement des données au changement de page ([c06351c](https://github.com/marekalgoud/statatrava/commit/c06351c))
+* fix(deps): update angular monorepo to v19.0.6 ([43d9f2d](https://github.com/marekalgoud/statatrava/commit/43d9f2d))
+* fix(deps): update angular monorepo to v19.1.1 (#16) ([28719e1](https://github.com/marekalgoud/statatrava/commit/28719e1)), closes [#16](https://github.com/marekalgoud/statatrava/issues/16)
+* fix(deps): update dependency swiper to v11.2.1 ([3972bf7](https://github.com/marekalgoud/statatrava/commit/3972bf7))
+* test: correction des tests unitaires ([f607cfa](https://github.com/marekalgoud/statatrava/commit/f607cfa))
+* test: correction des tests unitaires ([3a030af](https://github.com/marekalgoud/statatrava/commit/3a030af))
+* feat: ajout des stats à pour les années ([f2754bb](https://github.com/marekalgoud/statatrava/commit/f2754bb))
+* feat: ajout section natation ([ffc4ae9](https://github.com/marekalgoud/statatrava/commit/ffc4ae9))
+* feat: amélioration du responsive ([4dbb83c](https://github.com/marekalgoud/statatrava/commit/4dbb83c))
+* chore: configuration de renovate ([3c68112](https://github.com/marekalgoud/statatrava/commit/3c68112))
+* chore(deps): update angular-cli monorepo to v19.0.7 (#12) ([94ca215](https://github.com/marekalgoud/statatrava/commit/94ca215)), closes [#12](https://github.com/marekalgoud/statatrava/issues/12)
+* chore(deps): update angular-cli monorepo to v19.1.1 (#17) ([5acf5ce](https://github.com/marekalgoud/statatrava/commit/5acf5ce)), closes [#17](https://github.com/marekalgoud/statatrava/issues/17)
+* chore(deps): update dependency eslint to v9.18.0 ([a5bda65](https://github.com/marekalgoud/statatrava/commit/a5bda65))
+* chore(deps): update dependency jasmine-core to ~5.5.0 ([ac9e31f](https://github.com/marekalgoud/statatrava/commit/ac9e31f))
+* chore(deps): update dependency postcss to v8.5.0 (#13) ([b1029aa](https://github.com/marekalgoud/statatrava/commit/b1029aa)), closes [#13](https://github.com/marekalgoud/statatrava/issues/13)
+* chore(deps): update dependency postcss to v8.5.1 (#15) ([a737ce0](https://github.com/marekalgoud/statatrava/commit/a737ce0)), closes [#15](https://github.com/marekalgoud/statatrava/issues/15)
+* chore(deps): update dependency typescript to ~5.7.0 (#3) ([573e1f6](https://github.com/marekalgoud/statatrava/commit/573e1f6)), closes [#3](https://github.com/marekalgoud/statatrava/issues/3)
+* chore(deps): update dependency typescript-eslint to v8.19.1 (#5) ([29ffa37](https://github.com/marekalgoud/statatrava/commit/29ffa37)), closes [#5](https://github.com/marekalgoud/statatrava/issues/5)
+* chore(deps): update dependency typescript-eslint to v8.20.0 (#14) ([141af64](https://github.com/marekalgoud/statatrava/commit/141af64)), closes [#14](https://github.com/marekalgoud/statatrava/issues/14)
+* chore(deps): update release-it-dependencies (#11) ([c8ce874](https://github.com/marekalgoud/statatrava/commit/c8ce874)), closes [#11](https://github.com/marekalgoud/statatrava/issues/11)
+* refactor: créaction d'un composant header ([dc1392f](https://github.com/marekalgoud/statatrava/commit/dc1392f))
+* ci: correction job de test ([13b71e4](https://github.com/marekalgoud/statatrava/commit/13b71e4))
+* build: Create build.yml ([5cbc342](https://github.com/marekalgoud/statatrava/commit/5cbc342))
+* Add renovate.json ([02b332b](https://github.com/marekalgoud/statatrava/commit/02b332b))
+
 ## 1.1.0 (2025-01-07)
 
 * fix: correction fichier configuration release-it ([2f2834c](https://github.com/marekalgoud/statatrava/commit/2f2834c))
