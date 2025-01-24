@@ -1,12 +1,15 @@
-<app-header></app-header>
-<main class="font-sans flex flex-col py-6 px-4 gap-6">
-@if (athlete(); as athlete) {
-    <div>
-      <p>
-        Hello <strong class="font-bold text-slate-900 dark:text-slate-200">{{athlete.firstname}}</strong> !<br>
-        Compare tes perfs par rapport à l'année dernière, et retrouve d'autre infos sympa sur tes activités.
-      </p>
-    </div>
-    <router-outlet></router-outlet>
-}
-</main>
+<div class="h-dvh flex flex-col">
+  <app-header></app-header>
+  <main class="font-sans flex-grow flex flex-col py-6 px-4 gap-6">
+  @if (athlete(); as athlete) {
+      <div>
+        <p>
+          Hello <strong class="font-bold text-slate-900 dark:text-slate-200">{{athlete.firstname}}</strong> !<br>
+          Compare tes perfs par rapport à l'année dernière, et retrouve d'autre infos sympa sur tes activités.
+        </p>
+      </div>
+      <router-outlet></router-outlet>
+  }
+  </main>
+  <app-footer></app-footer>
+</div>

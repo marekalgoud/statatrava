@@ -1,0 +1,28 @@
+{
+  "name": "Statatrava",
+  "short_name": "Statatrava",
+  "start_url": "/",
+  "icons": [
+    {
+      "purpose": "maskable",
+      "sizes": "128x128",
+      "src": "maskable_icon_x128.png",
+      "type": "image/png"
+    },
+    {
+      "purpose": "maskable",
+      "sizes": "192x192",
+      "src": "maskable_icon_x192.png",
+      "type": "image/png"
+    },
+    {
+      "purpose": "maskable",
+      "sizes": "384x384",
+      "src": "maskable_icon_x384.png",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#1990e4",
+  "background_color": "#1990e4",
+  "display": "standalone"
+}
