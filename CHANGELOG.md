@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.3.0 (2025-01-24)
+
+* feat: ajout du footer et correction icone du manifest.json ([3c21a8e](https://github.com/marekalgoud/statatrava/commit/3c21a8e))
+* chore(deps): update angular-cli monorepo to v19.1.2 (#18) ([d6042a4](https://github.com/marekalgoud/statatrava/commit/d6042a4)), closes [#18](https://github.com/marekalgoud/statatrava/issues/18)
+* chore(deps): update angular-cli monorepo to v19.1.3 (#21) ([83ad3f6](https://github.com/marekalgoud/statatrava/commit/83ad3f6)), closes [#21](https://github.com/marekalgoud/statatrava/issues/21)
+* chore(deps): update angular-cli monorepo to v19.1.4 (#25) ([37ced32](https://github.com/marekalgoud/statatrava/commit/37ced32)), closes [#25](https://github.com/marekalgoud/statatrava/issues/25)
+* chore(deps): update dependency @openapitools/openapi-generator-cli to v2.16.2 (#22) ([c9064b7](https://github.com/marekalgoud/statatrava/commit/c9064b7)), closes [#22](https://github.com/marekalgoud/statatrava/issues/22)
+* chore(deps): update dependency release-it to v18.1.2 (#26) ([71461df](https://github.com/marekalgoud/statatrava/commit/71461df)), closes [#26](https://github.com/marekalgoud/statatrava/issues/26)
+* chore(deps): update dependency typescript-eslint to v8.21.0 (#20) ([5d3fdeb](https://github.com/marekalgoud/statatrava/commit/5d3fdeb)), closes [#20](https://github.com/marekalgoud/statatrava/issues/20)
+* fix(deps): update angular monorepo to v19.1.2 (#19) ([00359fd](https://github.com/marekalgoud/statatrava/commit/00359fd)), closes [#19](https://github.com/marekalgoud/statatrava/issues/19)
+* fix(deps): update angular monorepo to v19.1.3 (#23) ([780ce3a](https://github.com/marekalgoud/statatrava/commit/780ce3a)), closes [#23](https://github.com/marekalgoud/statatrava/issues/23)
+
 ## 1.2.0 (2025-01-19)
 
 * fix: correction du double chargement des données au changement de page ([c06351c](https://github.com/marekalgoud/statatrava/commit/c06351c))
