@@ -14,10 +14,9 @@ export class StatsService {
   auth = inject(AuthService)
 
   private localStorageAthlete: string | null
-  private _athlete: Signal<DetailedAthlete| undefined>
-
+  private _athlete = signal<DetailedAthlete|undefined>(undefined)
   private localStorageActivities:string | null
-  private _activities: Signal<SummaryActivity[]| undefined>
+  private _activities = signal<SummaryActivity[]>([])
 
   constructor() {
     this.athletesService.configuration = this.auth.config
@@ -26,8 +25,8 @@ export class StatsService {
     this.localStorageAthlete = window.localStorage.getItem('athlete')
     this.localStorageActivities = window.localStorage.getItem('activities')
 
-    this._athlete = signal(this.localStorageAthlete ? JSON.parse(this.localStorageAthlete): undefined)
-    this._activities = signal(this.localStorageActivities ? JSON.parse(this.localStorageActivities): undefined)
+    this._athlete.set(this.localStorageAthlete ? JSON.parse(this.localStorageAthlete): undefined)
+    this._activities.set(this.localStorageActivities ? JSON.parse(this.localStorageActivities): undefined)
   }
 
   get athlete():Signal<DetailedAthlete| undefined> {
@@ -36,7 +35,10 @@ export class StatsService {
     } else {
       return toSignal(
         this.athletesService.getLoggedInAthlete().pipe(
-          tap((athlete) => window.localStorage.setItem('athlete',JSON.stringify(athlete)))
+          tap((athlete) => {
+            window.localStorage.setItem('athlete',JSON.stringify(athlete))
+            this._athlete.set(athlete)
+          })
         )
       )
     }
@@ -58,7 +60,10 @@ export class StatsService {
         ),
           takeWhile(response => response && response.length > 0),
           reduce((acc, response) => acc.concat(response as SummaryActivity[]), [] as SummaryActivity[]),
-          tap((activities) => window.localStorage.setItem('activities',JSON.stringify(activities)))
+          tap((activities) => {
+            window.localStorage.setItem('activities',JSON.stringify(activities))
+            this._activities.set(activities)
+          })
       ))
     }
   }
