@@ -3,6 +3,7 @@ import { AthletesService, ActivitiesService, DetailedAthlete, SummaryActivity } 
 import { AuthService } from './auth.service';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { expand, of, reduce, takeWhile, tap } from 'rxjs';
+import dayjs from 'dayjs';
 
 @Injectable({
   providedIn: 'root'
@@ -46,7 +47,24 @@ export class StatsService {
 
   get activities():Signal<SummaryActivity[] | undefined> {
     if(this._activities()) {
-      return this._activities
+      const dateOfLastActivities = this._activities().map(activity => activity.start_date).sort().reverse()[0]
+      let page = 1
+      return toSignal(this.activitiesService.getLoggedInAthleteActivities(undefined,dayjs(dateOfLastActivities).unix(), page, 100).pipe(
+        expand(response => {
+          if (response.length == 0) {
+            return of();
+          }
+          page++;
+          return this.activitiesService.getLoggedInAthleteActivities(undefined,dayjs(dateOfLastActivities).unix(), page, 100)
+        }
+        ),
+          takeWhile(response => response && response.length > 0),
+          reduce((acc, response) => acc.concat(response as SummaryActivity[]), this._activities()),
+          tap((activities) => {
+            window.localStorage.setItem('activities',JSON.stringify(activities))
+            this._activities.set(activities)
+          })
+      ))
     } else {
       let page = 1
       return toSignal(this.activitiesService.getLoggedInAthleteActivities(undefined,undefined, page, 100).pipe(

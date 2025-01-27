@@ -10,7 +10,16 @@ interface Token {
     expires_in: number,
     refresh_token: string,
     access_token: string,
-    athlete: object
+    athlete: {
+        id: number,
+        username: string,
+        resource_state: number,
+        firstname: string,
+        lastname: string,
+        city: string,
+        state: string,
+        country: string,
+    }
 }
 
 @Injectable({
@@ -31,17 +40,20 @@ export class AuthService {
     const params = url.searchParams
     const code = params.get('code')
     const token = this.token()
+
     if(token && token.expires_at < new Date().getTime() / 1000) {
-      window.localStorage.removeItem('token')
-      window.localStorage.removeItem('activities')
       this.token.set(null)
     }
-    if(!this.token() && !code) {
+    if(!token && !code) {
       this.authorize()
     }
 
     if(code) {
       const token = await firstValueFrom(this.setToken(code))
+      if(token.athlete.id !== token.athlete.id) {
+        window.localStorage.removeItem('stats')
+        window.localStorage.removeItem('athlete')
+      }
       this.token.set(token)
       window.localStorage.setItem('token', JSON.stringify(token))
     }
