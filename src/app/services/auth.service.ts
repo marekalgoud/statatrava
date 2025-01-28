@@ -42,9 +42,10 @@ export class AuthService {
     const token = this.token()
 
     if(token && token.expires_at < new Date().getTime() / 1000) {
+      console.log('Token expired')
       this.token.set(null)
     }
-    if(!token && !code) {
+    if(!this.token() && !code) {
       this.authorize()
     }
 

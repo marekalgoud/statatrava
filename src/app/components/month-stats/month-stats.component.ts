@@ -2,6 +2,7 @@ import { booleanAttribute, Component, computed, input } from '@angular/core';
 import { SummaryActivity } from '../../open-api/strava';
 import { CommonModule, DatePipe, DecimalPipe } from '@angular/common';
 import dayjs from 'dayjs';
+import 'dayjs/locale/fr';
 import { TimeFormatPipe } from '../../pipe/timeFormat.pipe';
 import { CO2 } from '../../constant';
 

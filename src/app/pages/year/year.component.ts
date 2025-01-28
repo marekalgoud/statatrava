@@ -14,17 +14,17 @@ export class YearComponent {
 
   stats = inject(StatsService)
 
-    activities = this.stats.activities
+  activities = this.stats.activities
 
-    firstDayOfYear = computed(() => {
-      const firstActivity = this.activities()?.pop()
-      let firstActivityDate = dayjs(firstActivity?.start_date).startOf('year')
-      const res = [firstActivityDate.format()]
-      while(firstActivityDate.isBefore(dayjs().startOf('year'))) {
-        firstActivityDate = firstActivityDate.add(1, 'year')
-        res.push(firstActivityDate.format())
-      }
-      return res.reverse()
-    })
+  firstDayOfYear = computed(() => {
+    const firstActivity = this.activities()?.pop()
+    let firstActivityDate = dayjs(firstActivity?.start_date).startOf('year')
+    const res = [firstActivityDate.format()]
+    while (firstActivityDate.isBefore(dayjs().startOf('year'))) {
+      firstActivityDate = firstActivityDate.add(1, 'year')
+      res.push(firstActivityDate.format())
+    }
+    return res.reverse()
+  })
 
 }
