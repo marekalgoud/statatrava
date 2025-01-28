@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.4.0 (2025-01-28)
+
+* feat: amélioration de la gestion de l'init de l'app pour le chargement des données ([dc89640](https://github.com/marekalgoud/statatrava/commit/dc89640))
+* feat: mise en place de la page graphique ([bedd3c8](https://github.com/marekalgoud/statatrava/commit/bedd3c8))
+* chore(deps): update dependency @openapitools/openapi-generator-cli to v2.16.3 (#28) ([db6b314](https://github.com/marekalgoud/statatrava/commit/db6b314)), closes [#28](https://github.com/marekalgoud/statatrava/issues/28)
+* chore(deps): update dependency eslint to v9.19.0 (#27) ([67fc5a6](https://github.com/marekalgoud/statatrava/commit/67fc5a6)), closes [#27](https://github.com/marekalgoud/statatrava/issues/27)
+* chore(deps): update dependency typescript-eslint to v8.22.0 (#29) ([11700b9](https://github.com/marekalgoud/statatrava/commit/11700b9)), closes [#29](https://github.com/marekalgoud/statatrava/issues/29)
+* fix: correction multiple appel au changement de page ([da078c4](https://github.com/marekalgoud/statatrava/commit/da078c4))
+
 ## 1.3.0 (2025-01-24)
 
 * feat: ajout du footer et correction icone du manifest.json ([3c21a8e](https://github.com/marekalgoud/statatrava/commit/3c21a8e))
