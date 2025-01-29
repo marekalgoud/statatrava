@@ -1,5 +1,9 @@
 # Changelog
 
+## <small>1.4.1 (2025-01-29)</small>
+
+* fix: correction bug suppression des activités lors de la navigation sur la page année ([6b0b3b3](https://github.com/marekalgoud/statatrava/commit/6b0b3b3))
+
 ## 1.4.0 (2025-01-28)
 
 * feat: amélioration de la gestion de l'init de l'app pour le chargement des données ([dc89640](https://github.com/marekalgoud/statatrava/commit/dc89640))
