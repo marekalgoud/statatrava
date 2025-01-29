@@ -1,8 +1,8 @@
 import { inject, Injectable, signal, Signal } from '@angular/core';
 import { AthletesService, ActivitiesService, DetailedAthlete, SummaryActivity } from '../open-api/strava';
 import { AuthService } from './auth.service';
-import { toSignal } from '@angular/core/rxjs-interop';
-import { expand, of, reduce, takeWhile, tap } from 'rxjs';
+import { toObservable, toSignal } from '@angular/core/rxjs-interop';
+import { expand, map, of, reduce, takeWhile, tap } from 'rxjs';
 import dayjs from 'dayjs';
 
 @Injectable({
@@ -47,19 +47,19 @@ export class StatsService {
 
   get activities():Signal<SummaryActivity[] | undefined> {
     if(this._activities()) {
-      const dateOfLastActivities = this._activities().map(activity => activity.start_date).sort().reverse()[0]
+      const dateOfLastActivities = this._activities().map(activity => dayjs(activity.start_date).unix()).sort().reverse()[0]
       let page = 1
-      return toSignal(this.activitiesService.getLoggedInAthleteActivities(undefined,dayjs(dateOfLastActivities).unix(), page, 100).pipe(
-        expand(response => {
-          if (response.length == 0) {
-            return of();
-          }
-          page++;
-          return this.activitiesService.getLoggedInAthleteActivities(undefined,dayjs(dateOfLastActivities).unix(), page, 100)
-        }
-        ),
+      return toSignal(this.activitiesService.getLoggedInAthleteActivities(undefined,dateOfLastActivities, page, 100).pipe(
+          expand(response => {
+            if (response.length == 0) {
+              return of();
+            }
+            page++;
+            return this.activitiesService.getLoggedInAthleteActivities(undefined,dateOfLastActivities, page, 100)
+          }),
           takeWhile(response => response && response.length > 0),
-          reduce((acc, response) => acc.concat(response as SummaryActivity[]), this._activities()),
+          reduce((acc, response) => acc.concat(response as SummaryActivity[]), [...(this._activities() || [])]),
+          map((activities) => activities.sort((a,b) => dayjs(b.start_date).unix() - dayjs(a.start_date).unix())),
           tap((activities) => {
             window.localStorage.setItem('activities',JSON.stringify(activities))
             this._activities.set(activities)
