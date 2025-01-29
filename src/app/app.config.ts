@@ -1,4 +1,4 @@
-import { ApplicationConfig, inject, LOCALE_ID, provideAppInitializer, provideZoneChangeDetection } from '@angular/core'
+import { ApplicationConfig, inject, LOCALE_ID, provideAppInitializer, provideExperimentalZonelessChangeDetection, provideZoneChangeDetection } from '@angular/core'
 import { provideRouter } from '@angular/router'
 import { routes } from './app.routes'
 import { provideHttpClient } from '@angular/common/http'
@@ -13,7 +13,8 @@ registerLocaleData(localeFr, 'fr')
 export const appConfig: ApplicationConfig = {
   providers: [
     provideHttpClient(),
-    provideZoneChangeDetection({ eventCoalescing: true }),
+    // provideZoneChangeDetection({ eventCoalescing: true }),
+    provideExperimentalZonelessChangeDetection(),
     provideRouter(routes),
     provideAppInitializer(() => {
       const initFn = ((authService: AuthService) => authService.init())(inject(AuthService))
