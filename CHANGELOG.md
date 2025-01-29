@@ -1,5 +1,12 @@
 # Changelog
 
+## <small>1.4.2 (2025-01-29)</small>
+
+* fix: correction bug suppression des activités lors de la navigation sur la page année ([6b0b3b3](https://github.com/marekalgoud/statatrava/commit/6b0b3b3))
+* fix: gestion des erreurs lors de l'appel à l'API activités ([41f3b6d](https://github.com/marekalgoud/statatrava/commit/41f3b6d))
+* fix: passage en mode zoneless ([93bfa3b](https://github.com/marekalgoud/statatrava/commit/93bfa3b))
+* chore: release v1.4.1 ([6e00220](https://github.com/marekalgoud/statatrava/commit/6e00220))
+
 ## <small>1.4.1 (2025-01-29)</small>
 
 * fix: correction bug suppression des activités lors de la navigation sur la page année ([6b0b3b3](https://github.com/marekalgoud/statatrava/commit/6b0b3b3))
