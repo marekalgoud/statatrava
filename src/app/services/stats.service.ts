@@ -1,8 +1,8 @@
 import { inject, Injectable, signal, Signal } from '@angular/core';
 import { AthletesService, ActivitiesService, DetailedAthlete, SummaryActivity } from '../open-api/strava';
 import { AuthService } from './auth.service';
-import { toObservable, toSignal } from '@angular/core/rxjs-interop';
-import { expand, map, of, reduce, takeWhile, tap } from 'rxjs';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { catchError, expand, map, of, reduce, takeWhile, tap } from 'rxjs';
 import dayjs from 'dayjs';
 
 @Injectable({
@@ -18,6 +18,7 @@ export class StatsService {
   private _athlete = signal<DetailedAthlete|undefined>(undefined)
   private localStorageActivities:string | null
   private _activities = signal<SummaryActivity[]>([])
+  private _hasError = signal<boolean>(false)
 
   constructor() {
     this.athletesService.configuration = this.auth.config
@@ -28,6 +29,10 @@ export class StatsService {
 
     this._athlete.set(this.localStorageAthlete ? JSON.parse(this.localStorageAthlete): undefined)
     this._activities.set(this.localStorageActivities ? JSON.parse(this.localStorageActivities): undefined)
+  }
+
+  get hasError():Signal<boolean> {
+    return this._hasError
   }
 
   get athlete():Signal<DetailedAthlete| undefined> {
@@ -50,6 +55,7 @@ export class StatsService {
       const dateOfLastActivities = this._activities().map(activity => dayjs(activity.start_date).unix()).sort().reverse()[0]
       let page = 1
       return toSignal(this.activitiesService.getLoggedInAthleteActivities(undefined,dateOfLastActivities, page, 100).pipe(
+          tap(() => this._hasError.set(false)),
           expand(response => {
             if (response.length == 0) {
               return of();
@@ -63,6 +69,10 @@ export class StatsService {
           tap((activities) => {
             window.localStorage.setItem('activities',JSON.stringify(activities))
             this._activities.set(activities)
+          }),
+          catchError(() => {
+            this._hasError.set(true);
+            return of(undefined)
           })
       ))
     } else {
